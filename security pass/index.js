@@ -91,7 +91,10 @@ security_pass_template = `<html lang="en">
 </body>
 </html>`;
 
-reservations = Array.from(document.querySelectorAll("[data-test-reservation-card]"));
+/** @type {HTMLElement[]} */
+/*let reservations;*/
+
+reservations = Array.from(document.querySelectorAll("[data-test-reservation-card]:not(.print-modified)"));
 
 /** @type {HTMLElement} */
 /*let container;*/
@@ -142,13 +145,13 @@ if (container === null) {
 
 
     document.addEventListener("keydown", event => {
-        console.log(event.key)
         if (event.key !== "Escape") return;
         container.style.visibility = "hidden";
     }, true);
 };
 
 reservations.forEach(reservation => {
+    reservation.classList.add("print-modified");
     /**
      * Extracting data
      */
@@ -196,7 +199,6 @@ reservations.forEach(reservation => {
         iframe.focus();
 
         iframe.contentDocument.addEventListener("keydown", event => {
-            console.log(event.key)
             if (event.key !== "Escape") return;
             container.style.visibility = "hidden";
         }, true);

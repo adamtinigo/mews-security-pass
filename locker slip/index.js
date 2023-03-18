@@ -156,7 +156,7 @@
     */
     /** @type {HTMLElement[]} */
     const items = Array.from(document.querySelectorAll("[class^='item']"))
-                .filter(item => item.firstElementChild.outerText === "Lockers");
+                .filter(item => item.firstElementChild.outerText.startsWith("Locker")); // This detects "Lockers" and "Locker / Safe"
     let days_paid = 0;
     let total = 0;
     items.forEach(item => {

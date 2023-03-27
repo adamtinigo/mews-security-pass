@@ -120,7 +120,7 @@
             iframe_container.appendChild(iframe);
     
             const button = document.createElement("button");
-            button.innerText = "Print Security Pass";
+            button.innerText = "Print";
             button.style.fontSize = "2em";
             button.style.padding = "0.5em";
             button.onclick = () => {

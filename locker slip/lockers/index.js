@@ -79,7 +79,7 @@
                     <td>€ {total}</td>
                 </tr>
                 <tr>
-                    <td>PAID<br>UNTIL:</td>
+                    <td>PAID UNTIL:</td>
                     <td>{paid_until}</td>
                 </tr>
             </table>
@@ -114,7 +114,7 @@
         iframe_container.style.flexBasis = "515px";
         iframe_container.style.flexDirection = "column";
     
-        {    
+        {
             const iframe = document.createElement("iframe");
             iframe.style.flexGrow = "1";
             iframe_container.appendChild(iframe);
@@ -180,6 +180,9 @@
      * get bill number and guest's name
      */
     const bill_number = document.querySelector("[id^=heading] h2").outerText.split(' ')[1];
+    if (bill_number === 'preview') {
+        
+    };
     const guest = document.querySelector('[data-test-id="customer-name-modal-opener"] span').outerText;
     
     

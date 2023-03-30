@@ -1,5 +1,5 @@
 {
-    function getElementNotYetRendered(elementGetter, delay = 100, timeout = 10000) {
+    function getElementNotYetRendered(elementGetter, delay = 1300, timeout = 10000) {
         let retries = Math.ceil(timeout / delay);
         return new Promise((resolve, reject) => {
             (function resolveIfElementFound() {
@@ -21,20 +21,22 @@
     function most_foreground_modal() { return document.querySelector('[class^="style__ModalTransitionGroup"] > [id^="mgr-0-modal"]:last-child') }
     
     async function getFirstOptionToChange() {
+        return await getElementNotYetRendered(()=>document.querySelector('[role="listbox"] [role="option"]'))
+        
         /**
          * This select is too optimized and only shows options currently in view,
          * so we have to get and process its options in chunks
          */
     
-        while (true) {
-            const options_chunk = await getElementNotYetRendered(()=>document.querySelectorAll('[role="listbox"] [role="option"]'))
-            console.log(options_chunk);
-            const options_chunk_array = Array.from(options_chunk)
-            const option = options_chunk_array.find(option => !option.outerText.includes("."));
-            if (option) return option
+        // while (true) {
+
+        //     const options_chunk = await getElementNotYetRendered(()=>document.querySelectorAll('[role="listbox"] [role="option"]'))
+        //     const options_chunk_array = Array.from(options_chunk)
+        //     const option = options_chunk_array.find(option => !option.outerText.includes("."));
+        //     if (option) return option
             
-            /* last_option */ options_chunk_array.at(-1).scrollIntoView()
-        }
+        //     /* last_option */ options_chunk_array.at(-1).scrollIntoView()
+        // }
     }
     
     (async ()=>{
@@ -52,7 +54,7 @@
         
             option.click()
             const input = document.getElementById("LockIdentifier")
-            input.value = `${option.outerText}.01`
+            input.value = option.outerText
             const send_button = most_foreground_modal()?.querySelector('button[type="submit"]').click()
         }
     

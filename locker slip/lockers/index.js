@@ -207,3 +207,4 @@
         container.style.visibility = "hidden";
     }, true);
 }
+/* made by github.com/madacol */

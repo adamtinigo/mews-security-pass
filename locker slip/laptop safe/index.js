@@ -150,12 +150,14 @@
     /**
      * Extracting data
      */
+
+    const front_page = Array.from(document.querySelectorAll("[id^=mgr]")).at(-1);
     
     /**
      * Get total and days of lockers
-    */
+     */
     /** @type {HTMLElement[]} */
-    const items = Array.from(document.querySelectorAll("[class^='item']"))
+    const items = Array.from(front_page.querySelectorAll("[class^='item']"))
                 .filter(item => item.firstElementChild.outerText.startsWith("Laptop"));
     let days_paid = 0;
     let total = 0;
@@ -179,11 +181,8 @@
     /**
      * get bill number and guest's name
      */
-    const bill_number = document.querySelector("[id^=heading] h2").outerText.split(' ')[1];
-    if (bill_number === 'preview') {
-        
-    };
-    const guest = document.querySelector('[data-test-id="customer-name-modal-opener"] span').outerText;
+    const bill_number = front_page.querySelector("[id^=heading] h2").outerText.split(' ').at(-1);
+    const guest = front_page.querySelector('[data-test-id="customer-name-modal-opener"] span').closest("a").outerText.trim();
     
     
     /**

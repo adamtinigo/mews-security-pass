@@ -165,7 +165,7 @@
         let [room, bed] = roombed.split(".");
         if (room.toLowerCase() === "kr") room = "Kinlay Room";
         if (bed === undefined) bed = "Private Room";
-        const [arrival, departure] = reservation.querySelector("[class^=Caption] > span")
+        const [arrival, departure] = reservation.querySelector('[data-test-tag="true"] ~ [class^=Typography] > span')
                                                 .outerText.split(" ‐ ");
     
         /**
